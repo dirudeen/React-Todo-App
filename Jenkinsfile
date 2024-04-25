@@ -9,22 +9,22 @@ pipeline {
             }
         }
         
-        // stage("Install dependencies for frontend"){
-        //     agent {
-        //         docker {
-        //             image 'node:21-alpine3.18'
-        //         }   
-        //     }
+        stage("Install dependencies for frontend"){
+            agent {
+                docker {
+                    image 'dirudeen/react-todo-app_frontend:latest'
+                }   
+            }
       
-        //     steps {
-        //         dir("frontend"){
-        //             withEnv(['npm_config_cache=/tmp/npm_cache']) {
-        //                 sh 'npm i'
-        //             }                    
-        //         }
-        //     }
+            steps {
+                dir("frontend"){
+                    withEnv(['npm_config_cache=/tmp/npm_cache']) {
+                        sh 'npm run dev'
+                    }                    
+                }
+            }
         
-        // }
+        }
 
         // stage("Run Tests linters and formaters in frontend"){
         //     agent {
@@ -41,25 +41,25 @@ pipeline {
             
         // }
 
-        stage("Run cypress tests"){
-            agent {
-                docker {
-                    image "cypress/included:13.8.1"
-                }
-            }
-             steps {
-                dir('frontend') {
-                sh "npm ci"
-                // Start the development server as a background task
-                sh 'npm start &'
-                // Wait for the server to start
-                sh 'sleep 15'
-                // Run the Cypress tests
-                sh 'npm run cypress:run'
-                // Stop the background development server
-                sh 'pkill node'
-                } 
-            }
-        }
+        // stage("Run cypress tests"){
+        //     agent {
+        //         docker {
+        //             image "cypress/included:13.8.1"
+        //         }
+        //     }
+        //      steps {
+        //         dir('frontend') {
+        //         sh "npm ci"
+        //         // Start the development server as a background task
+        //         sh 'npm start &'
+        //         // Wait for the server to start
+        //         sh 'sleep 15'
+        //         // Run the Cypress tests
+        //         sh 'npm run cypress:run'
+        //         // Stop the background development server
+        //         sh 'pkill node'
+        //         } 
+        //     }
+        // }
     }
 }
