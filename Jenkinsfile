@@ -19,7 +19,7 @@ pipeline {
             steps {
                 dir("frontend"){
                     withEnv(['npm_config_cache=/tmp/npm_cache']) {
-                        sh 'npm ci'
+                        sh 'whoami'
                     }                    
                 }
             }
