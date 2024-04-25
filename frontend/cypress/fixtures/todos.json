@@ -1,0 +1,9 @@
+{
+  "todos": [
+    { "id": 1, "text": "Learn Next.js", "completed": false },
+    { "id": 2, "text": "Build Todo App", "completed": true },
+    { "id": 3, "text": "Style the components", "completed": false },
+    { "id": 4, "text": "Implement CRUD operations", "completed": true },
+    { "id": 5, "text": "Test the application", "completed": false }
+  ]
+}

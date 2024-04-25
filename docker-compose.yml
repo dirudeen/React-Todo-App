@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: React-Todo-App_client
+    ports:
+      - "5173:5173"
+
+  backend:
+    build: ./backend
+    container_name: React-Todo-App_server
+    ports:
+      - "3000:3000"
