@@ -19,7 +19,7 @@ pipeline {
             steps {
                 dir("frontend"){
                     withEnv(['npm_config_cache=/tmp/npm_cache']) {
-                        sh 'sudo su node'
+                        sh 'sudo su - node'
                     }                    
                 }
             }
