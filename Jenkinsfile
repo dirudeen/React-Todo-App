@@ -9,18 +9,20 @@ pipeline {
             }
         }
         
-        // stage("Install dependencies for frontend"){
-        //     agent {
-        //         docker {
-        //             image 'node:21-alpine3.18'
-        //         }   
-        //     }
-        //     steps {
-        //         dir(frontend){
-        //             sh "npm ci"
-        //         }
-        //     }
-        // }
+        stage("Install dependencies for frontend"){
+            agent {
+                docker {
+                    image 'node:21-alpine3.18'
+                }   
+            }
+          node {
+            steps {
+                dir(frontend){
+                    sh "npm ci"
+                }
+            }
+          }  
+        }
 
         // stage("Run Tests linters and formaters in frontend"){
         //     agent {
