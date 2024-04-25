@@ -18,9 +18,9 @@ pipeline {
       
             steps {
                 dir(frontend){
-                    node {
-                        sh "npm ci"
-                    }
+                   
+                    sh "npm ci"
+                    
                 }
             }
         
