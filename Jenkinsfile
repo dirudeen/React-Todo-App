@@ -18,9 +18,9 @@ pipeline {
       
             steps {
                 dir("frontend"){
-                   
-                    sh "npm ci"
-                    
+                    withEnv(['npm_config_cache=/tmp/npm_cache']) {
+                        sh 'npm ci'
+                    }                    
                 }
             }
         
