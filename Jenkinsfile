@@ -1,9 +1,8 @@
 pipeline {
-    agent: none
+    agent none
 
     stages {
         stage("Checkout SCM"){
-            agent none
             steps {
                 git 'https://github.com/dirudeen/React-Todo-App.git'
             }
