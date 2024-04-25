@@ -2,15 +2,14 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const fs = require("fs");
-const morgan = require("morgan")
+const morgan = require("morgan");
 
 const port = 3000;
-
 
 app.use(cors());
 
 app.use(express.json());
-app.use(morgan("dev"))
+app.use(morgan("dev"));
 // Endpoint to get all todos
 app.get("/todos", (req, res) => {
   fs.readFile("todos.json", "utf8", (err, data) => {
@@ -70,7 +69,7 @@ app.patch("/todos/:id", (req, res) => {
     }
 
     let todos = JSON.parse(data);
-    
+
     const index = todos.findIndex((todo) => todo.id === id);
     if (index === -1) return res.status(404).send("Todo not found");
 
@@ -83,7 +82,7 @@ app.patch("/todos/:id", (req, res) => {
         res.status(500).send("Error writing todos");
         return;
       }
-      res.sendStatus(204)
+      res.sendStatus(204);
     });
   });
 });
