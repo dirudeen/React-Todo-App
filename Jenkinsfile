@@ -15,13 +15,15 @@ pipeline {
                     image 'node:21-alpine3.18'
                 }   
             }
-          node {
+      
             steps {
                 dir(frontend){
-                    sh "npm ci"
+                    node {
+                        sh "npm ci"
+                    }
                 }
             }
-          }  
+        
         }
 
         // stage("Run Tests linters and formaters in frontend"){
