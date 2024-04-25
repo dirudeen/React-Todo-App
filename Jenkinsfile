@@ -5,22 +5,22 @@ pipeline {
         stage("Checkout SCM"){
             agent any
             steps {
-                git 'https://github.com/dirudeen/React-Todo-App.git'
+                git url: 'https://github.com/dirudeen/React-Todo-App.git', branch: 'main'
             }
         }
         
-        stage("Install dependencies for frontend"){
-            agent {
-                docker {
-                    image 'node:21-alpine3.18'
-                }   
-            }
-            steps {
-                dir(frontend){
-                    sh "npm ci"
-                }
-            }
-        }
+        // stage("Install dependencies for frontend"){
+        //     agent {
+        //         docker {
+        //             image 'node:21-alpine3.18'
+        //         }   
+        //     }
+        //     steps {
+        //         dir(frontend){
+        //             sh "npm ci"
+        //         }
+        //     }
+        // }
 
         // stage("Run Tests linters and formaters in frontend"){
         //     agent {
