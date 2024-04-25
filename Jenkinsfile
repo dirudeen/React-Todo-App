@@ -17,7 +17,7 @@ pipeline {
             }
       
             steps {
-                dir(frontend){
+                dir("frontend"){
                    
                     sh "npm ci"
                     
@@ -33,7 +33,7 @@ pipeline {
         //         }   
         //     }
         //     steps {
-        //         dir(frontend){
+        //         dir("frontend"){
         //             sh "npm run lint"
         //             sh "npm run format"
         //         }
