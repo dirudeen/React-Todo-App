@@ -50,7 +50,7 @@ pipeline {
                 dir('frontend') {
                 sh "npm ci"
                 // Start the development server as a background task
-                sh 'npm start &'
+                sh 'npm run dev &'
                 // Wait for the server to start
                 sh 'sleep 15'
                 // Run the Cypress tests
