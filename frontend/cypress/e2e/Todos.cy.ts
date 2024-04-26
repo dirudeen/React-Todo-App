@@ -1,8 +1,15 @@
 describe("Todos spec", () => {
-  it("Add todo functionality should works correctly", () => {
+  it("Todo E2E", () => {
+    cy.intercept("GET", "/todos", {
+      body: [],
+      statusCode: 200,
+    }).as("getTodos");
+
     cy.visit("/");
+
     //intercept post requests
-    cy.intercept("POST", "http://localhost:3000/todos", {
+    // Add todo functionality should work correctly
+    cy.intercept("POST", "/todos", {
       body: {
         id: 10,
         text: "Learn Cypress",
@@ -28,7 +35,7 @@ describe("Todos spec", () => {
       cy.get("li").its(0).should("contain.text", "Learn Cypress");
     });
 
-    cy.intercept("POST", "http://localhost:3000/todos", {
+    cy.intercept("POST", "/todos", {
       body: {
         id: 11,
         text: "Cook dinner at 5pm",
@@ -36,6 +43,8 @@ describe("Todos spec", () => {
       },
       statusCode: 200,
     });
+
+    // Add another todo
 
     cy.get("form").within(() => {
       cy.get("input").type("Cook dinner at 5pm");
@@ -47,8 +56,8 @@ describe("Todos spec", () => {
       cy.get("li").its(1).should("contain.text", "Cook dinner at 5pm");
     });
 
-    // checks the todo and verifies the line-through
-    cy.intercept("PATCH", "http://localhost:3000/todos/:id", {
+    //checks the todo and verifies the line-through
+    cy.intercept("patch", "/todos/10", {
       statusCode: 203,
     });
 
@@ -61,8 +70,8 @@ describe("Todos spec", () => {
         });
     });
 
-    // click on delete btn and verify the todo is deleted
-    cy.intercept("DELETE", "http://localhost:3000/todos/:id", {
+    // Click delere button and verify the todo is deleted
+    cy.intercept("DELETE", "/todos/10", {
       statusCode: 200,
     });
 
