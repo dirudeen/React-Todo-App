@@ -8,36 +8,22 @@ pipeline {
                 git url: 'https://github.com/dirudeen/React-Todo-App.git', branch: 'main'
             }
         }
-        
-        // stage("Install dependencies for frontend"){
-        //     agent {
-        //         docker {
-        //             image 'node:lts'
-        //         }   
-        //     }
-      
-        //     steps {
-        //         dir("frontend"){
-        //             sh 'npm run dev'            
-        //         }
-        //     }
-        
-        // }
+    
 
-        // stage("Run Tests linters and formaters in frontend"){
-        //     agent {
-        //         docker {
-        //             image 'node:21-alpine3.18'
-        //         }   
-        //     }
-        //     steps {
-        //         dir("frontend"){
-        //             sh "npm run lint"
-        //             sh "npm run format"
-        //         }
-        //     }
+        stage("Run static code analysis and formaters in frontend"){
+            agent {
+                docker {
+                    image 'node:21-alpine3.18'
+                }   
+            }
+            steps {
+                dir("frontend"){
+                    sh "npm run lint"
+                    sh "npm run format"
+                }
+            }
             
-        // }
+        }
 
         stage("Run cypress tests"){
             agent {
