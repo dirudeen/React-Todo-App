@@ -55,8 +55,8 @@ pipeline {
                 DOCKER_IMAGE_BACKEND = "dirudeen/react-todo-app_backend:v${BUILD_NUMBER}"
             }
             steps {
-                sh "cd frontend && docker build -t ${DOCKER_IMAGE_FRONTEND}"
-                sh "cd ../backend && docker build -t ${DOCKER_IMAGE_BACKEND}"
+                sh "cd frontend && docker build -t ${DOCKER_IMAGE_FRONTEND} ."
+                sh "cd ../backend && docker build -t ${DOCKER_IMAGE_BACKEND} ."
                 sh 'docker login -u dirudeen -p $DOCKER_CRED_PSW'
                 sh "docker push ${DOCKER_IMAGE_FRONTEND}"
                 sh "docker push ${DOCKER_IMAGE_BACKEND}"
