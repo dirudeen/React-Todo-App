@@ -42,7 +42,7 @@ pipeline {
         stage("Run cypress tests"){
             agent {
                 docker {
-                    image "node:lts"
+                    image "cypress/base"
                 }
             }
              steps {
