@@ -4,14 +4,14 @@ const cors = require("cors");
 const fs = require("fs");
 const morgan = require("morgan");
 
-const port = 3000;
+const port = 5000;
 
 app.use(cors());
 
 app.use(express.json());
 app.use(morgan("dev"));
 // Endpoint to get all todos
-app.get("/todos", (req, res) => {
+app.get("/api/todos", (req, res) => {
   fs.readFile("todos.json", "utf8", (err, data) => {
     if (err) {
       console.error("Error reading todos:", err);
@@ -23,7 +23,7 @@ app.get("/todos", (req, res) => {
 });
 
 // Endpoint to add a new todo
-app.post("/todos", (req, res) => {
+app.post("/api/todos", (req, res) => {
   const { text, completed } = req.body;
 
   if (!text) {
@@ -52,7 +52,7 @@ app.post("/todos", (req, res) => {
 });
 
 // Endpoint to update a todo
-app.patch("/todos/:id", (req, res) => {
+app.patch("/api/todos/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const { completed } = req.body;
 
@@ -88,7 +88,7 @@ app.patch("/todos/:id", (req, res) => {
 });
 
 // Endpoint to delete a todo
-app.delete("/todos/:id", (req, res) => {
+app.delete("/api/todos/:id", (req, res) => {
   const id = parseInt(req.params.id);
   if (isNaN(id)) {
     res.status(400).send("Invalid todo id");
