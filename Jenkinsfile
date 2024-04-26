@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-            docker {
-                image "cypress/base"
-                args '-u 0:0'
-            }
-        }
+    agent none
     
     stages {
         stage("Checkout SCM"){
@@ -16,11 +11,11 @@ pipeline {
     
 
         stage("Run static code analysis and formaters in frontend"){
-            // agent {
-            //     docker {
-            //         image 'node:21-alpine3.18'
-            //     }   
-            // }
+            agent {
+                docker {
+                    image 'node:21-alpine3.18'
+                }   
+            }
             steps {
                 dir("frontend"){
                     sh "npm run lint"
@@ -53,6 +48,7 @@ pipeline {
         // }
 
         stage("Build and push docker image"){
+            agent any
             environment {
                 DOCKER_CRED = credentials('docker-cred')
                 DOCKER_IMAGE_FRONTEND = "dirudeen/React-Todo-App_Frontend:v${BUILD_NUMBER}"
