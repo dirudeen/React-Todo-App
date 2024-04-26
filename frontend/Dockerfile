@@ -1,6 +1,6 @@
 FROM node:21-alpine3.18
 
-WORKDIR /Docker_Compose/frontend
+WORKDIR /react-todo-app/frontend
 
 COPY package.json .
 
