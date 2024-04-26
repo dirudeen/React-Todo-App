@@ -53,7 +53,7 @@ pipeline {
         // }
 
         stage("Build and push docker image"){
-            enivironment {
+            environment {
                 DOCKER_CRED = credentials('docker-cred')
                 DOCKER_IMAGE_FRONTEND = "dirudeen/React-Todo-App_Frontend:v${BUILD_NUMBER}"
                 DOCKER_IMAGE_BACKEND = "dirudeen/React-Todo-App_Backend:v${BUILD_NUMBER}"
