@@ -51,8 +51,8 @@ pipeline {
             agent any
             environment {
                 DOCKER_CRED = credentials('docker-cred')
-                DOCKER_IMAGE_FRONTEND = "dirudeen/React-Todo-App_Frontend:v${BUILD_NUMBER}"
-                DOCKER_IMAGE_BACKEND = "dirudeen/React-Todo-App_Backend:v${BUILD_NUMBER}"
+                DOCKER_IMAGE_FRONTEND = "dirudeen/react-todo-app_frontend:v${BUILD_NUMBER}"
+                DOCKER_IMAGE_BACKEND = "dirudeen/react-todo-app_backend:v${BUILD_NUMBER}"
             }
             steps {
                 sh "cd frontend && docker build -t ${DOCKER_IMAGE_FRONTEND}"
