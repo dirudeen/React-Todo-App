@@ -43,6 +43,7 @@ pipeline {
             agent {
                 docker {
                     image "cypress/base"
+                    args '-u 0:0'
                 }
             }
              steps {
