@@ -1,6 +1,6 @@
 describe("Todos spec", () => {
   it("Todo E2E", () => {
-    cy.intercept("GET", "/todos", {
+    cy.intercept("GET", "/api/todos", {
       body: [],
       statusCode: 200,
     }).as("getTodos");
@@ -9,7 +9,7 @@ describe("Todos spec", () => {
 
     //intercept post requests
     // Add todo functionality should work correctly
-    cy.intercept("POST", "/todos", {
+    cy.intercept("POST", "/api/todos", {
       body: {
         id: 10,
         text: "Learn Cypress",
@@ -35,7 +35,7 @@ describe("Todos spec", () => {
       cy.get("li").its(0).should("contain.text", "Learn Cypress");
     });
 
-    cy.intercept("POST", "/todos", {
+    cy.intercept("POST", "/api/todos", {
       body: {
         id: 11,
         text: "Cook dinner at 5pm",
@@ -57,7 +57,7 @@ describe("Todos spec", () => {
     });
 
     //checks the todo and verifies the line-through
-    cy.intercept("patch", "/todos/10", {
+    cy.intercept("patch", "/api/todos/10", {
       statusCode: 203,
     });
 
@@ -71,7 +71,7 @@ describe("Todos spec", () => {
     });
 
     // Click delere button and verify the todo is deleted
-    cy.intercept("DELETE", "/todos/10", {
+    cy.intercept("DELETE", "/api/todos/10", {
       statusCode: 200,
     });
 
